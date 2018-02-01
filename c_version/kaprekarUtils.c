@@ -1,4 +1,4 @@
-#include<math.h>
+#include <math.h>
 
 #include "kaprekarUtils.h"
 
@@ -25,27 +25,26 @@
 int isKaprekar(int n) {
 
   if(n < 1) {
-    return false;
+    return 0;
   }
 
   int i;
   long square = n * (long) n;
   int numDigits = (int) log10(n) + 1;
-  long modulus = 0;
+  long modulus = 1;
   long first, second;
 
   //for each possible "split" of the square...
-  for(i=1; i<=numberOfDigits; i++) {
+  for(i=1; i<=numDigits; i++) {
     //increase the modulus by a factor of 10
-    modulous *= 10;
+    modulus *= 10;
 
     //split the square into two parts
     first = square / modulus;
     second = square % modulus;
 
     //test if the split makes a Kaprekar number
-    if(second > 0 &&
-       first + second == n) {
+    if(second > 0 && first + second == n) {
       return 1;
     }
   }
